@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tobias.des.dto.JwtAuthResponse;
 import com.tobias.des.dto.LoginDto;
+import com.tobias.des.dto.SignupDto;
 import com.tobias.des.service.AuthService;
 
 import lombok.AllArgsConstructor;
@@ -30,4 +31,11 @@ public class AuthController {
 
 		return new ResponseEntity<>(jwtAuthResponse, HttpStatus.OK);
 	}
+
+	@PostMapping("/signup")
+	public ResponseEntity<String> signup(@RequestBody SignupDto signupDto) {
+		authService.signupAndAssignRole(signupDto, "ROLE_USER");
+		return new ResponseEntity<>("User registered successfully!", HttpStatus.CREATED);
+	}
+
 }

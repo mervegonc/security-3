@@ -8,9 +8,11 @@ import com.tobias.des.entitiy.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
-//	Object findByUsernameOrEmail(String usernameOrEmail, String usernameOrEmail2);
 	Optional<User> findByUsernameOrEmail(String usernameOrEmail, String usernameOrEmail2);
 
-	// Optional<User> findByUsernameOrEmail(String usernameOrEmail);
+	@Override
+	User save(User user);
 
+	// Kullanıcı adını kontrol etmek için metot
+	boolean existsByUsername(String username);
 }
